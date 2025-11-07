@@ -36,6 +36,11 @@
       "type": 3,
       "api": "csp_mwcy_tu",
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/mwcy_tu.js"
+    },{
+      "name": "ギリギリ动漫_兔",
+      "type": 3,
+      "api": "csp_girigirilove_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/girigirilove_tu.js"
     }
   ]
 }
