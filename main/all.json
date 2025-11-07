@@ -26,6 +26,16 @@
       "type": 3,
       "api": "csp_guazi_tu",
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/guazi_tu.js"
+    },{
+      "name": "次元方舟_兔",
+      "type": 3,
+      "api": "csp_cyfz_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/cyfz_tu.js"
+    },{
+      "name": "喵物次元_兔",
+      "type": 3,
+      "api": "csp_cyfz_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/cyfz_tu.js"
     }
   ]
 }
