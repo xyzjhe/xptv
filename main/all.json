@@ -21,6 +21,11 @@
       "type": 3,
       "api": "csp_duboku",
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/duboku.js"
+    },{
+      "name": "瓜子web_兔",
+      "type": 3,
+      "api": "csp_guazi_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/guazi_tu.js"
     }
   ]
 }
