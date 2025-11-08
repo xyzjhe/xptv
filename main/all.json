@@ -49,8 +49,8 @@
     },{
       "name": "海龟TV🪜_兔",
       "type": 3,
-      "api": "csp_haigui_tu",
-      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/haigui_tu.js"
+      "api": "csp_haiguitv_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/haiguitv_tu.js"
     }
   ]
 }
