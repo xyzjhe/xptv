@@ -51,6 +51,11 @@
       "type": 3,
       "api": "csp_haiguitv_tu",
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/haiguitv_tu.js"
+    },{
+      "name": "奈飞工厂_兔",
+      "type": 3,
+      "api": "csp_netflixgc_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/netflixgc_tu.js"
     }
   ]
 }
