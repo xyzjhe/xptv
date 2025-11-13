@@ -66,6 +66,11 @@
       "type": 3,
       "api": "csp_youknow_tu",
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/youknow_tu.js"
+    },{
+      "name": "麦田影院（无搜索）_兔",
+      "type": 3,
+      "api": "csp_mtyy_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/mtyy_tu.js"
     }
   ]
 }
