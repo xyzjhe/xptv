@@ -61,6 +61,11 @@
       "type": 3,
       "api": "csp_cyc_tu",
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/cyc_tu.js"
+    },{
+      "name": "youknow_兔",
+      "type": 3,
+      "api": "csp_youknow_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/youknow_tu.js"
     }
   ]
 }
