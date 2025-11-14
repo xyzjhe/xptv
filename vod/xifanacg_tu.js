@@ -1,5 +1,4 @@
 const cheerio = createCheerio()
-const CryptoJS = createCryptoJS()
 
 const headers = {
     'Origin': 'https://dm.xifanacg.com',
