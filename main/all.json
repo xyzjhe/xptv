@@ -71,6 +71,11 @@
       "type": 3,
       "api": "csp_mtyy_tu",
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/mtyy_tu.js"
+    },{
+      "name": "tg搜索｜PAN_兔",
+      "type": 3,
+      "api": "csp_tgs_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/tgs_tu.js"
     }
   ]
 }
