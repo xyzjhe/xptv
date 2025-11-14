@@ -76,6 +76,16 @@
       "type": 3,
       "api": "csp_tgs_tu",
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/tgs_tu.js"
+    },{
+      "name": "ikanbot_兔",
+      "type": 3,
+      "api": "csp_ikanbot_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/ikanbot_tu.js"
+    },{
+      "name": "稀饭动漫_兔",
+      "type": 3,
+      "api": "csp_xifanacg_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/xifanacg_tu.js"
     }
   ]
 }
