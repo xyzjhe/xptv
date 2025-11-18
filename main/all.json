@@ -87,11 +87,6 @@
       "api": "csp_xifanacg_tu",
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/xifanacg_tu.js"
     },{
-      "name": "金牌影视_兔",
-      "type": 3,
-      "api": "csp_jpyy_tu",
-      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/jpyy_tu.js"
-    },{
       "name": "飞快TV_兔",
       "type": 3,
       "api": "csp_feikuai_tu",
