@@ -148,11 +148,12 @@ async function getTracks(ext) {
         tracks: [],
     }
     $("div.module-list>.tab-content").each((i, each) => {
+        let str=$(each).find("h4").text()
+        const result = str.indexOf('@') !== -1 ? str.slice(0, str.indexOf('@')) : str;
         group.tracks.push({
-            name: $(each).find("h4").text(),
+            name: result,
             pan: $(each).find("p").text()
         })
-
     })
     groups.push(group)
     return jsonify({ list: groups })
