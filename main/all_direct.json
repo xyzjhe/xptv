@@ -1,0 +1,101 @@
+{
+  "sites": [
+    {
+      "name": "两个BT_兔",
+      "type": 3,
+      "api": "csp_bttwo_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/bttwo_tu.js"
+    },
+    {
+      "name": "4kvm_兔",
+      "type": 3,
+      "api": "csp_4kvm_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/4kvm_tu.js"
+    },{
+      "name": "纽约影院_兔（无搜索）",
+      "type": 3,
+      "api": "csp_nycvod_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/nycvod_tu.js"
+    },{
+      "name": "假独播库_兔",
+      "type": 3,
+      "api": "csp_duboku_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/duboku_tu.js"
+    },{
+      "name": "瓜子web_兔",
+      "type": 3,
+      "api": "csp_guazi_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/guazi_tu.js"
+    },{
+      "name": "次元方舟_兔",
+      "type": 3,
+      "api": "csp_cyfz_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/cyfz_tu.js"
+    },{
+      "name": "喵物次元_兔",
+      "type": 3,
+      "api": "csp_mwcy_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/mwcy_tu.js"
+    },{
+      "name": "ギリギリ动漫_兔",
+      "type": 3,
+      "api": "csp_girigirilove_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/girigirilove_tu.js"
+    },{
+      "name": "libvio_兔",
+      "type": 3,
+      "api": "csp_libvio_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/libvio_tu.js"
+    },{
+      "name": "海龟TV🪜_兔",
+      "type": 3,
+      "api": "csp_haiguitv_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/haiguitv_tu.js"
+    },{
+      "name": "奈飞工厂_兔",
+      "type": 3,
+      "api": "csp_netflixgc_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/netflixgc_tu.js"
+    },{
+      "name": "次元城动画（无搜索）_兔",
+      "type": 3,
+      "api": "csp_cyc_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/cyc_tu.js"
+    },{
+      "name": "youknow_兔",
+      "type": 3,
+      "api": "csp_youknow_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/youknow_tu.js"
+    },{
+      "name": "麦田影院（无搜索）_兔",
+      "type": 3,
+      "api": "csp_mtyy_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/mtyy_tu.js"
+    },{
+      "name": "tg搜索｜PAN_兔",
+      "type": 3,
+      "api": "csp_tgs_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/tgs_tu.js"
+    },{
+      "name": "ikanbot_兔",
+      "type": 3,
+      "api": "csp_ikanbot_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/ikanbot_tu.js"
+    },{
+      "name": "稀饭动漫_兔",
+      "type": 3,
+      "api": "csp_xifanacg_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/xifanacg_tu.js"
+    },{
+      "name": "金牌影视_兔",
+      "type": 3,
+      "api": "csp_jpyy_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/jpyy_tu.js"
+    },{
+      "name": "飞快TV_兔",
+      "type": 3,
+      "api": "csp_feikuai_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/feikuai_tu.js"
+    }
+  ]
+}
