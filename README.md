@@ -30,12 +30,15 @@ tg搜配置
 ],"only":""
 }
 
+
 only是过滤网盘用的，内容为域名的里的一部分，如driver.uc.com，就可以填uc，用英文逗号,分割
 
 
-
-
 youknow开启18+tab配置     {"age18":true}
+
+
+金牌影视网址配置   {"site":"https://www.jiabaide.cn"}
+已知其他域名https://www.ivdy001.com/
 
 
 
