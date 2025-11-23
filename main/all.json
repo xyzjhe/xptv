@@ -91,6 +91,11 @@
       "type": 3,
       "api": "csp_feikuai_tu",
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/feikuai_tu.js"
+    },{
+      "name": "多乐影视_兔",
+      "type": 3,
+      "api": "csp_duole_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/duole_tu.js"
     }
   ]
 }
