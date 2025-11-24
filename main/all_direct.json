@@ -96,6 +96,11 @@
       "type": 3,
       "api": "csp_duole_tu",
       "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/duole_tu.js"
+    },{
+      "name": "卡卡动漫_兔",
+      "type": 3,
+      "api": "csp_kaka_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/kaka_tu.js"
     }
   ]
 }
