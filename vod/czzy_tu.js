@@ -174,7 +174,7 @@ async function getPlayinfo(ext) {
     })
     let playurl=argsify(data).result[0].url
 
-    return jsonify({ urls: [playurl], headers: [argsify(data).result[0].headers] })
+    return jsonify({ urls: [playurl],  headers: [{ 'User-Agent': UA }] })
 }
 async function search(ext) {
     ext = argsify(ext)
