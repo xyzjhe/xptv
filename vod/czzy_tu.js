@@ -165,6 +165,7 @@ async function getTracks(ext) {
     })
 }
 
+
 async function getPlayinfo(ext) {
     ext = argsify(ext)
     let url = ext.url
@@ -173,8 +174,13 @@ async function getPlayinfo(ext) {
         header
     })
     let playurl=argsify(data).result[0].url
+    if(playurl.includes(".php?code")){
+        return jsonify({ urls: [playurl.split("url=")[1]], headers: [argsify(data).result[0].headers] })
 
-    return jsonify({ urls: [playurl],  headers: [{ 'User-Agent': UA }] })
+    }else{
+        return jsonify({ urls: [playurl], headers: [argsify(data).result[0].headers] })
+
+    }
 }
 async function search(ext) {
     ext = argsify(ext)
