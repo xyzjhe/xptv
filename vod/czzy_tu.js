@@ -44,11 +44,11 @@ async function getTabs() {
         headers: header,
     })
 
-    let html
-    if (data.includes('SafeLine')) {
-        html = testFunc(data)
-    } else html = data
-    const $ = cheerio.load(html)
+    // let html
+    // if (data.includes('SafeLine')) {
+    //     html = testFunc(data)
+    // } else html = data
+    const $ = cheerio.load(data)
 
     let allClass = $('ul.submenu_mi > li > a')
     allClass.each((i, e) => {
@@ -222,34 +222,34 @@ async function search(ext) {
         list: cards,
     })
 }
-
-function testFunc(data) {
-    try {
-        const raw_key = new Uint8Array(JSON.parse(data.match(/var\s+raw_key\s*=\s*(\[[^\]]*\])/)[1]))
-        const iv = new Uint8Array(JSON.parse(data.match(/var\s+iv\s*=\s*new Uint8Array\(\s*(\[[^\]]*\])\s*\)/)[1]))
-        const encrypted = new Uint8Array(
-            JSON.parse(data.match(/var\s+encrypted\s*=\s*new Uint8Array\(\s*(\[[^\]]*\])\s*\)/)[1])
-        )
-        const tag = new Uint8Array(JSON.parse(data.match(/var\s+tag\s*=\s*new Uint8Array\(\s*(\[[^\]]*\])\s*\)/)[1]))
-
-        const ciphertextWithTag = new Uint8Array(encrypted.length + tag.length)
-        ciphertextWithTag.set(encrypted, 0)
-        ciphertextWithTag.set(tag, encrypted.length)
-
-        const decrypted = asmCrypto.AES_GCM.decrypt(ciphertextWithTag, raw_key, iv)
-
-        // let plaintext = ''
-        // for (let i = 0; i < decrypted.length; i++) {
-        //     plaintext += String.fromCharCode(decrypted[i])
-        // }
-        let plaintext = utf8Decode(decrypted)
-        // $print(plaintext)
-        return plaintext
-    } catch (error) {
-        $print(error)
-        return null
-    }
-}
+//
+// function testFunc(data) {
+//     try {
+//         const raw_key = new Uint8Array(JSON.parse(data.match(/var\s+raw_key\s*=\s*(\[[^\]]*\])/)[1]))
+//         const iv = new Uint8Array(JSON.parse(data.match(/var\s+iv\s*=\s*new Uint8Array\(\s*(\[[^\]]*\])\s*\)/)[1]))
+//         const encrypted = new Uint8Array(
+//             JSON.parse(data.match(/var\s+encrypted\s*=\s*new Uint8Array\(\s*(\[[^\]]*\])\s*\)/)[1])
+//         )
+//         const tag = new Uint8Array(JSON.parse(data.match(/var\s+tag\s*=\s*new Uint8Array\(\s*(\[[^\]]*\])\s*\)/)[1]))
+//
+//         const ciphertextWithTag = new Uint8Array(encrypted.length + tag.length)
+//         ciphertextWithTag.set(encrypted, 0)
+//         ciphertextWithTag.set(tag, encrypted.length)
+//
+//         const decrypted = asmCrypto.AES_GCM.decrypt(ciphertextWithTag, raw_key, iv)
+//
+//         // let plaintext = ''
+//         // for (let i = 0; i < decrypted.length; i++) {
+//         //     plaintext += String.fromCharCode(decrypted[i])
+//         // }
+//         let plaintext = utf8Decode(decrypted)
+//         // $print(plaintext)
+//         return plaintext
+//     } catch (error) {
+//         $print(error)
+//         return null
+//     }
+// }
 
 function utf8Decode(bytes) {
     let out = '',
