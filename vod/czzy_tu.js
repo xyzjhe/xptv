@@ -176,15 +176,10 @@ async function getPlayinfo(ext) {
     const { data } = await $fetch.get(`${$config.sniffer}/getplayurl?url=${url}`, {
         header
     })
-    let playurl=argsify(data).result[0].url
-    if(playurl.includes(".php?code")){
-        return jsonify({ urls: [playurl.split("url=")[1]], headers: [argsify(data).result[0].headers] })
+    return jsonify({ urls: [argsify(data).result.first.url], headers: [argsify(data).result.first.headers] })
 
-    }else{
-        return jsonify({ urls: [playurl], headers: [argsify(data).result[0].headers] })
-
-    }
 }
+
 async function search(ext) {
     ext = argsify(ext)
     let cards = []
