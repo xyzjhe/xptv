@@ -1,4 +1,6 @@
 
+//自定义配置格式{"cookie":""}
+//去观影网页登录账号后，F12打开控制台后随便访问一个页面，在网络标签下你访问的网页，复制标头里的cookie即可
 const cheerio = createCheerio()
 
 const UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/604.1.14 (KHTML, like Gecko)'
