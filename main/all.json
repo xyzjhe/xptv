@@ -111,6 +111,11 @@
       "type": 3,
       "api": "csp_czzy_tu",
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/czzy_tu.js"
+    },{
+      "name": "观影｜PAN_兔",
+      "type": 3,
+      "api": "csp_gying_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/gying_tu.js"
     }
   ]
 }
