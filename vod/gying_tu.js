@@ -218,7 +218,7 @@ async function search(ext) {
         cards.push({
             vod_id: result.l.i[index],
             vod_name: item,
-            vod_pic: `https://s.tutu.pm/img/tv/${result.l.i[index]}/256.webp`,
+            vod_pic: `https://s.tutu.pm/img/${result.l.d[index]}/${result.l.i[index]}/256.webp`,
             vod_remarks: "豆瓣 "+result.l.pf.db.s[index],
             ext: {
                 url: `${appConfig.site}/res/downurl/${result.l.d[index]}/${result.l.i[index]}`,
