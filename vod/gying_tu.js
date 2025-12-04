@@ -6,10 +6,10 @@ const cheerio = createCheerio()
 
 const UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/604.1.14 (KHTML, like Gecko)'
 
-const $config = argsify($config_str)
+let $config = argsify($config_str)
 const appConfig = {
     ver: 1,
-    title: '观影网｜PAN_兔',
+    title: '观影网｜PAN',
     site: $config?.site||"https://www.gying.net/",
     tabs: [
         {
@@ -131,7 +131,7 @@ async function getTracks(ext) {
         },
     })
     const respstr =parseJsonIfString(data)
-
+    //清洗的结果
     if(respstr.hasOwnProperty('panlist')){
         const patterns = {
             resolution: /(4K|4k|1080P|1080p)/,
@@ -166,13 +166,42 @@ async function getTracks(ext) {
             let title = tags.length ? tags.join('/') : '未知规格';
 
             tracks.push({
-                name:title,
+                name:title+`（${(index+1).toString()}）`,
                 pan: item,
                 ext: {
                     url: '',
                 },
             })
         });
+        const hostCount = {};
+        const order = ["quark.cn", "alipan.com", "uc.cn", "189.cn", "115cdn"];
+        tracks = tracks.sort((a, b) => {
+            const ma = a.pan.match(/^https?:\/\/([^\/?#]+)/i);
+            const mb = b.pan.match(/^https?:\/\/([^\/?#]+)/i);
+            const ha = ma ? ma[1].toLowerCase() : "";
+            const hb = mb ? mb[1].toLowerCase() : "";
+
+            let ia = 999;
+            for (let i = 0; i < order.length; i++) {
+                if (ha.indexOf(order[i]) !== -1) { ia = i; break; }
+            }
+
+            let ib = 999;
+            for (let i = 0; i < order.length; i++) {
+                if (hb.indexOf(order[i]) !== -1) { ib = i; break; }
+            }
+
+            return ia - ib;
+        }).filter(item => {
+            const m = item.pan.match(/^https?:\/\/([^\/?#]+)/i);
+            const host = m ? m[1].toLowerCase() : "";
+
+            hostCount[host] = (hostCount[host] || 0) + 1;
+
+            return hostCount[host] <= 5;
+        });
+
+
 //${respstr.panlist.tname[respstr.panlist.type[index]]}
 
     }else if(respstr.hasOwnProperty('file')){
@@ -183,6 +212,7 @@ async function getTracks(ext) {
         $utils.toastError('没有网盘资源');
 
     }
+
     return jsonify({
         list: [
             {
