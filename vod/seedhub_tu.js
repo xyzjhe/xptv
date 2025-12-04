@@ -1,5 +1,8 @@
 const cheerio = createCheerio()
+
 const UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/604.1.14 (KHTML, like Gecko)'
+
+
 const appConfig = {
     ver: 1,
     title: 'SeedHub｜PAN_兔',
@@ -87,9 +90,11 @@ async function getTracks(ext) {
         return jsonify({ list: [] });
     }
 
-    const counts = {}; // 记录每个种类的数量
-    const maxPerType = 5; // 每种类最多 5 个
-    let index=1;
+    const counts = {};
+    const maxPerType = 5;
+    let index = 1;
+    const requests = [];
+
     for (const e of playlist) {
         const links = $(e).find('a').toArray();
         for (const link of links) {
@@ -97,25 +102,27 @@ async function getTracks(ext) {
             if (!urltype || urltype.includes("baidu.com") || urltype.includes("xunlei.com")) continue;
 
             if (!counts[urltype]) counts[urltype] = 0;
-
             if (counts[urltype] >= maxPerType) continue;
 
             counts[urltype]++;
-            $utils.toastInfo(`正在获取第${index}个网盘链接...`)
             const href = appConfig.site + $(link).attr('href');
 
+            requests.push({ href, index: index++ }); // 保存编号
+        }
+    }
+    const results = await Promise.all(
+        requests.map(async ({ href, index }) => {
             const { data } = await $fetch.get(href, {
                 headers: { 'User-Agent': UA },
             });
-
-            tracks.push({
-                name: '网盘'+index,
+            return {
+                name: '网盘' + index,
                 pan: data.match(/var\s+panLink\s*=\s*["']([^"']+)["']/)[1],
-            });
-            index=index+1;
-        }
-    }
+            };
+        })
+    );
 
+    tracks.push(...results);
     //排序
     const order = ["quark.cn", "alipan.com", "uc.cn", "189.cn", "115cdn"];
     tracks = tracks.sort((a, b) => {
