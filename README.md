@@ -40,7 +40,7 @@ youknow开启18+tab配置     {"age18":true}
 金牌影视网址配置   {"site":"https://www.jiabaide.cn"}
 已知其他域名https://www.ivdy001.com/
 
-
+剧迷自定义配置 {"site":"https://gimytv.ai"}
 
 
 
