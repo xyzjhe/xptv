@@ -9,7 +9,7 @@ const UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/6
 let $config = argsify($config_str)
 const appConfig = {
     ver: 1,
-    title: '观影网｜PAN',
+    title: '观影网｜PAN_兔',
     site: $config?.site||"https://www.gying.net/",
     tabs: [
         {
@@ -105,7 +105,7 @@ async function getCards(ext) {
             cards.push({
                 vod_id: item,
                 vod_name: inlistData["t"][index],
-                vod_pic: `https://s.tutu.pm/img/${inlistData["ty"]}/${item}.webp`,
+                vod_pic: `https://s.tutu.pm/img/${inlistData["ty"]}/${item}/384.webp`,
                 vod_remarks: inlistData["g"][index],
                 ext: {
                     url: `${appConfig.site}res/downurl/${inlistData["ty"]}/${item}`,
