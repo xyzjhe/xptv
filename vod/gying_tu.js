@@ -1,6 +1,6 @@
 
 //自定义配置格式{"cookie":"","only":""}
-//only是过滤网盘用的，内容为域名的截取，如driver.uc.com，就可以填uc，用英文逗号,分割
+//only是过滤网盘用的，内容为域名的截取，如driver.uc.com，就可以填uc，115网盘就写115，用英文逗号,分割
 //去观影网页登录账号后，F12打开控制台后随便访问一个页面，在网络标签下你访问的网页，复制标头里的cookie即可
 const cheerio = createCheerio()
 
@@ -142,7 +142,7 @@ async function getTracks(ext) {
         };
 
         respstr.panlist.url.forEach((item, index) => {
-
+            item=item.replace('115cdn.com','115.com')
             const keys = ($config.only ? $config.only.toLowerCase() : "").split(",").filter(Boolean);
             if (keys.length) {
                 const match = item.match(/^(https?:\/\/)?([^\/:]+)/i);
