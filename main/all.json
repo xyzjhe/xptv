@@ -126,6 +126,11 @@
       "type": 3,
       "api": "csp_hongguo_tu",
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/hongguo_tu.js"
+    },{
+      "name": "趣盘搜｜PAN_兔",
+      "type": 3,
+      "api": "csp_qps_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/qps_tu.js"
     }
   ]
 }
