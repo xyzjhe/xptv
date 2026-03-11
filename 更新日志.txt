@@ -10,7 +10,7 @@
 
    * 所有资源源现已支持自定义域名。
    * 配置方式：在自定义配置中填写
-     `{"site":"https://www.xxxx.com"}`
+     {"site":"https://www.xxxx.com"}
 
 3. **命名规范统一**
 
