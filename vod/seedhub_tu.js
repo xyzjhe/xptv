@@ -1,12 +1,13 @@
 const cheerio = createCheerio()
-
+let $config = argsify($config_str)
+const SITE = $config.site || "https://www.seedhub.cc"
 const UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/604.1.14 (KHTML, like Gecko)'
 
 
 const appConfig = {
     ver: 1,
-    title: 'SeedHub｜PAN_兔',
-    site: 'https://www.seedhub.cc',
+    title: 'SeedHub',
+    site: SITE,
     tabs: [
         {
             name: '首页',

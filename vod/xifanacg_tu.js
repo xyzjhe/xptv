@@ -1,15 +1,16 @@
 const cheerio = createCheerio()
-
+let $config = argsify($config_str)
+const SITE = $config.site || "https://dm.xifanacg.com"
 const headers = {
-    'Origin': 'https://dm.xifanacg.com',
+    'Origin': `${SITE}`,
     'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
 
 }
 
 const appConfig = {
     ver: 1,
-    title: "稀饭动漫_兔",
-    site: "https://dm.xifanacg.com",
+    title: "稀饭动漫",
+    site: SITE,
     tabs: [{
         name: '连载新番',
         ext: {
@@ -59,7 +60,7 @@ async function getCards(ext) {
     let cards = []
     let page = ext.page || 1
     let dmtype=ext.dmtype
-    let url="https://dm.xifanacg.com/index.php/ds_api/vod"
+    let url=`${appConfig.site}/index.php/ds_api/vod`
     const body = `type=${dmtype}&level=0&by=time&page=${page}`;
 
     const { data } = await $fetch.post(url, body, {
@@ -130,6 +131,7 @@ async function getPlayinfo(ext) {
     return jsonify({ 'urls': [obj.url] })
 }
 async function search(ext) {
+    return
     checkBrowser()
 
     ext = argsify(ext)

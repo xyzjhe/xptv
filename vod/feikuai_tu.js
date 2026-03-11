@@ -1,54 +1,55 @@
 const cheerio = createCheerio()
 const CryptoJS = createCryptoJS()
-
+let $config = argsify($config_str)
+const SITE = $config.site || "https://feikuai.tv"
 const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
 const headers = {
-    'Referer': 'https://feikuai.tv/',
-    'Origin': 'https://feikuai.tv',
+    'Referer': `${SITE}/`,
+    'Origin': `${SITE}`,
     'User-Agent': UA,
 }
 
 const appConfig = {
     ver: 1,
-    title: "飞快TV_兔",
-    site: "https://feikuai.tv",
+    title: "飞快TV",
+    site: SITE,
     tabs: [{
         name: '热播推荐',
         ext: {
-            url:"https://feikuai.tv/label/new.html#tab=3",
+            url:`${SITE}/label/new.html#tab=3`,
             index:2
         },
     }, {
         name: '新片上线',
         ext: {
-            url:"https://feikuai.tv/label/new.html#tab=2",
+            url:`${SITE}/label/new.html#tab=2`,
             index:1
         },
     }, {
         name: '今日更新',
         ext: {
-            url:"https://feikuai.tv/label/new.html#tab=1",
+            url:`${SITE}/label/new.html#tab=1`,
             index:0
         },
     }, {
         name: '电影',
         ext: {
-            url:'https://feikuai.tv/vodshow/1--------{page}---.html'
+            url:`${SITE}/vodshow/1--------{page}---.html`
         },
     }, {
         name: '剧集',
         ext: {
-            url:'https://feikuai.tv/vodshow/2--------{page}---.html'
+            url:`${SITE}/vodshow/2--------{page}---.html`
         },
     }, {
         name: '综艺',
         ext: {
-            url:'https://feikuai.tv/vodshow/3--------{page}---.html'
+            url:`${SITE}/vodshow/3--------{page}---.html`
         },
     }, {
         name: '动漫',
         ext: {
-            url:'https://feikuai.tv/vodshow/4--------{page}---.html'
+            url:`${SITE}/vodshow/4--------{page}---.html`
         },
     }
     ]
@@ -181,7 +182,7 @@ async function search(ext) {
 
     let text = encodeURIComponent(ext.text)
     let page = ext.page || 1
-    const url = `https://feikuai.tv/label/search_ajax.html?wd=${text}&by=time&order=desc&page=${page}`
+    const url = `${appConfig.site}/label/search_ajax.html?wd=${text}&by=time&order=desc&page=${page}`
     const { data } = await $fetch.get(url, {
         headers
     })
