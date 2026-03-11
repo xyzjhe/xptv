@@ -1,11 +1,12 @@
 {
   "sites": [
     {
-      "name": "[兔]tg搜索☁️",
+      "name": "[兔]玩偶哥哥☁️",
       "type": 3,
-      "api": "csp_tgs_tu",
-      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/tgs_tu.js"
-    },{
+      "api": "csp_wogg_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/wogg_tu.js"
+    },
+    {
       "name": "[兔]观影☁️",
       "type": 3,
       "api": "csp_gying_tu",
@@ -20,6 +21,11 @@
       "type": 3,
       "api": "csp_qps_tu",
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/qps_tu.js"
+    },{
+      "name": "[兔]tg搜索☁️",
+      "type": 3,
+      "api": "csp_tgs_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/tgs_tu.js"
     },{
       "name": "[兔]libvio\uD83C\uDFAC☁️",
       "type": 3,
