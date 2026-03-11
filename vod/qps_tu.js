@@ -13,17 +13,21 @@ function parseJsonIfString(input) {
 
 const cheerio = createCheerio()
 const CryptoJS = createCryptoJS()
+
+let $config = argsify($config_str)
+const SITE = $config.site || "https://pan.funletu.com"
+
 const headers = {
-    'Referer': 'https://pan.funletu.com/',
-    'Origin': 'https://pan.funletu.com',
+    'Referer': `${SITE}/`,
+    'Origin': `${SITE}`,
     'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
     'Content-Type': 'application/json'
 
 }
 const appConfig = {
     ver: 1,
-    title: "趣盘搜｜PAN_兔",
-    site: "https://pan.funletu.com",
+    title: "趣盘搜",
+    site: SITE,
     tabs: [{
         name: '只有搜索功能',
         ext: {
@@ -100,7 +104,7 @@ async function search(ext) {
             vod_pic:"http://www.kuaipng.com/Uploads/pic/w/2021/04-21/99512/water_99512_698_698_.png",
             vod_remarks: child.size,
             ext: {
-                url: `https://pan.funletu.com/c?uid=${child.id}`,
+                url: `${appConfig.site}/c?uid=${child.id}`,
                 pan:`${child.link}&&&${child.url}`
             },
         })

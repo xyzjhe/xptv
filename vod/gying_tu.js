@@ -1,16 +1,19 @@
 
-//自定义配置格式{"cookie":"","only":""}
+//自定义配置格式{"cookie":"","only":"","site":""}
 //only是过滤网盘用的，内容为域名的截取，如driver.uc.com，就可以填uc，115网盘就写115，用英文逗号,分割
 //去观影网页登录账号后，F12打开控制台后随便访问一个页面，在网络标签下你访问的网页，复制标头里的cookie即可
+//或者用ALOOK浏览器复制cookie
 const cheerio = createCheerio()
+let $config = argsify($config_str)
+const SITE = $config.site || "https://www.gying.net"
 
 const UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/604.1.14 (KHTML, like Gecko)'
 
-let $config = argsify($config_str)
+
 const appConfig = {
     ver: 1,
-    title: '观影网｜PAN_兔',
-    site: $config?.site||"https://www.gying.net/",
+    title: '观影网',
+    site: SITE,
     tabs: [
         {
             name: '热门电影',
@@ -52,6 +55,7 @@ const appConfig = {
     ],
 }
 async function getConfig() {
+
     if($config.cookie=="" || $config.cookie == undefined){
         $utils.toastError('cookie未配置！')
         return
@@ -66,9 +70,9 @@ async function getCards(ext) {
     let url;
     if(ext.id.includes("hits")){
         if(page>1){return}
-        url=`${appConfig.site}${id}`
+        url=`${appConfig.site}/${id}`
     }else{
-        url=`${appConfig.site}${id}${page}`
+        url=`${appConfig.site}/${id}${page}`
     }
     //$utils.toastError(url);
     const { data } = await $fetch.get(url, {
@@ -108,7 +112,7 @@ async function getCards(ext) {
                 vod_pic: `https://s.tutu.pm/img/${inlistData["ty"]}/${item}/384.webp`,
                 vod_remarks: inlistData["g"][index],
                 ext: {
-                    url: `${appConfig.site}res/downurl/${inlistData["ty"]}/${item}`,
+                    url: `${appConfig.site}/res/downurl/${inlistData["ty"]}/${item}`,
                 },
             })
         })

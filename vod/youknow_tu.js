@@ -1,48 +1,50 @@
-const cheerio = createCheerio()
-
-
 //打开成人开关  {"age18":true}
-let $config = safeJSONParse($config_str)
+
+
+const cheerio = createCheerio()
+let $config = argsify($config_str)
+const SITE = $config.site || "https://www.youknow.tv"
+
 const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
 const headers = {
-    'Referer': 'https://www.youknow.tv/',
-    'Origin': 'https://www.youknow.tv',
+    'Referer': `${SITE}/`,
+    'Origin': `${SITE}`,
     'User-Agent': UA,
 }
 
 const appConfig = {
     ver: 1,
-    title: "youknow_兔",
-    site: "https://www.youknow.tv",
+    title: "youknow",
+    site: SITE,
     tabs: [{
         name: '剧集',
         ext: {
-            url: 'https://www.youknow.tv/show/1--------{page}---/'
+            url: `${SITE}/show/1--------{page}---/`
         },
     }, {
         name: '电影',
         ext: {
-            url: 'https://www.youknow.tv/show/2--------{page}---/'
+            url: `${SITE}/show/2--------{page}---/`
         },
     }, {
         name: '综艺',
         ext: {
-            url: 'https://www.youknow.tv/show/3--------{page}---/'
+            url: `${SITE}/show/3--------{page}---/`
         },
     }, {
         name: '动漫',
         ext: {
-            url: 'https://www.youknow.tv/show/4--------{page}---/'
+            url: `${SITE}/show/4--------{page}---/`
         },
     }, {
         name: '短剧',
         ext: {
-            url: 'https://www.youknow.tv/show/55--------{page}---/'
+            url: `${SITE}/show/55--------{page}---/`
         },
     }, {
         name: '纪录片',
         ext: {
-            url: 'https://www.youknow.tv/show/5--------{page}---/'
+            url: `${SITE}/show/5--------{page}---/`
         },
     }
     ]
@@ -54,7 +56,7 @@ async function getConfig() {
             appConfig.tabs.push({
                 name: '成人',
                 ext: {
-                    url: 'https://www.youknow.tv/show/57--------{page}---/'
+                    url: `${SITE}/show/57--------{page}---/`
                 }
             });
         }
@@ -74,17 +76,31 @@ async function getCards(ext) {
     })
 
     const $ = cheerio.load(data)
-    $('div.module>a').each((_, each) => {
+    $('a.module-poster-item').each((_, each) => {
+
+        const a = $(each);
+        const img = a.find('img');
+
+        let pic =
+            img.attr("data-original") ||
+            img.attr("data-src") ||
+            img.attr("src") || "";
+
+        if (pic && !pic.startsWith("http")) {
+            pic = appConfig.site + pic;
+        }
+
         cards.push({
-            vod_id: $(each).attr('href'),
-            vod_name: $(each).attr('title'),
-            vod_pic: appConfig.site + $(each).find('div.module-item-pic>img').attr('src'),
-            vod_remarks: $(each).find('div.module-item-note').text().trim(),
+            vod_id: a.attr('href'),
+            vod_name: a.attr('title'),
+            vod_pic: pic,
+            vod_remarks: a.find('.module-item-note').text().trim(),
             ext: {
-                url: appConfig.site + $(each).attr('href'),
+                url: appConfig.site + a.attr('href'),
             },
-        })
-    })
+        });
+
+    });
 
     return jsonify({
         list: cards,
@@ -143,6 +159,7 @@ async function getPlayinfo(ext) {
     return jsonify({ 'urls': [m3u] })
 }
 async function search(ext) {
+    return
     ext = argsify(ext)
     let cards = [];
 

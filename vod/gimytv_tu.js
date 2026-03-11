@@ -2,17 +2,18 @@
 const cheerio = createCheerio()
 const CryptoJS = createCryptoJS()
 //JL / JCC  / djplayer 未做
-const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
-const headers = {
-    'Referer': "https://gimytv.ai/",
-    'Origin':"https://gimytv.ai",
-    'User-Agent': UA,
-}
+
 let $config = argsify($config_str)
 const SITE = $config.site || "https://gimytv.ai"
+const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+const headers = {
+    'Referer': `${SITE}/`,
+    'Origin': `${SITE}`,
+    'User-Agent': UA,
+}
 const appConfig = {
     ver: 1,
-    title: "剧迷_兔",
+    title: "剧迷",
     site: SITE,
     tabs: [{
         name: '陆剧',
@@ -73,11 +74,6 @@ const appConfig = {
         name: '综艺',
         ext: {
             url: `${SITE}/type/29-{page}.html`
-        },
-    },{
-        name: '短剧',
-        ext: {
-            url: `${SITE}/type/34-{page}.html`
         },
     },
     ]
@@ -284,7 +280,7 @@ async function getPlayinfo(ext) {
         //     + '" height="' + MacPlayer.Height + '" width="100%" height="100%" marginWidth="0" frameSpacing="0" marginHeight="0" frameBorder="0" scrolling="no" vspale="0" ></iframe>';
     } else if (jctype == 'JK2' || jctype == 'Disney' || jctype == 'qingshan') {
         // JK2
-        const {data} = await $fetch.get(`${SITE}/jcplayer/?url=${player_data.url}&jctype=JK2`, {
+        const {data} = await $fetch.get(`${appConfig.site}/jcplayer/?url=${player_data.url}&jctype=JK2`, {
             headers
         })
         const url = data.match(/playurl\s*=\s*['"]([^'"]+)['"]/)[1];
@@ -293,7 +289,7 @@ async function getPlayinfo(ext) {
 
         const body = `url=${player_data.url}`;
 
-        const { data } = await $fetch.post("${SITE}/jcplayer/hp/api.php", body,{headers:headers});
+        const { data } = await $fetch.post(`${appConfig.site}/jcplayer/hp/api.php`, body,{headers:headers});
 
         let jmurl=parseJsonIfString(data).url
 

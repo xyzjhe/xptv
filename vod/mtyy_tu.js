@@ -1,45 +1,46 @@
 const cheerio = createCheerio()
-
+let $config = argsify($config_str)
+const SITE = $config.site || "https://www.mtyy5.com"
 const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
 const headers = {
-    'Referer': 'https://www.mtyy5.com/',
-    'Origin': 'https://www.mtyy5.com',
+    'Referer': `${SITE}/`,
+    'Origin': `${SITE}`,
     'User-Agent': UA,
 }
 
 const appConfig = {
     ver: 1,
-    title: "麦田影院（无搜索）_兔",
-    site: "https://www.mtyy5.com",
+    title: "麦田影院（无搜索）",
+    site: SITE,
     tabs: [{
         name: '电影',
         ext: {
-            url: 'https://www.mtyy5.com/vodshow/1--------{page}---.html'
+            url: `${SITE}/vodshow/1--------{page}---.html`
         },
     }, {
         name: '电视剧',
         ext: {
-            url: 'https://www.mtyy5.com/vodshow/2--------{page}---.html'
+            url: `${SITE}/vodshow/2--------{page}---.html`
         },
     }, {
         name: '动漫',
         ext: {
-            url: 'https://www.mtyy5.com/vodshow/4--------{page}---.html'
+            url: `${SITE}/vodshow/4--------{page}---.html`
         },
     }, {
         name: '综艺',
         ext: {
-            url: 'https://www.mtyy5.com/vodshow/3--------{page}---.html'
+            url: `${SITE}/vodshow/3--------{page}---.html`
         },
     }, {
         name: '短剧',
         ext: {
-            url: 'https://www.mtyy5.com/vodshow/26--------{page}---.html'
+            url: `${SITE}/vodshow/26--------{page}---.html`
         },
     }, {
         name: '少儿',
         ext: {
-            url: 'https://www.mtyy5.com/vodshow/25--------{page}---.html'
+            url: `${SITE}/vodshow/25--------{page}---.html`
         },
     }]
 }
@@ -61,16 +62,23 @@ async function getCards(ext) {
 
     const $ = cheerio.load(data)
     $('div.public-list-box').each((_, each) => {
+
+        const a = $(each).find("a.public-list-exp");
+        const img = a.find("img");
+
+        const pic = img.attr("data-src") || img.attr("src");
+
         cards.push({
-            vod_id: $(each).find("a.public-list-exp").attr("href"),
-            vod_name: $(each).find("a.public-list-exp").attr("title"),
-            vod_pic: $(each).find("a.public-list-exp>img").attr("src"),
-            vod_remarks: $(each).find('div.public-list-prb').text(),
+            vod_id: a.attr("href"),
+            vod_name: a.attr("title"),
+            vod_pic: pic,
+            vod_remarks: $(each).find('.public-list-prb').text().trim(),
             ext: {
-                url: appConfig.site + $(each).find("a.public-list-exp").attr("href"),
+                url: appConfig.site + a.attr("href"),
             },
-        })
-    })
+        });
+
+    });
 
     return jsonify({
         list: cards,
