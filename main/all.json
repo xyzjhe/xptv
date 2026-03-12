@@ -80,6 +80,11 @@
       "api": "csp_gimytv_tu",
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/gimytv_tu.js"
     },{
+      "name": "[兔]嗷呜动漫\uD83C\uDF38",
+      "type": 3,
+      "api": "csp_aowudm_tu",
+      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/aowudm_tu.js"
+    },{
       "name": "[兔]ギリギリ动漫APP\uD83C\uDF38",
       "type": 3,
       "api": "csp_girigiriloveapp_tu",
