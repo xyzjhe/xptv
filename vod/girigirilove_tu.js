@@ -10,7 +10,7 @@ const headers = {
 }
 const appConfig = {
     ver: 1,
-    title: "ギリギリ动漫",
+    title: "ギリギリ动漫WEB",
     site: SITE,
     tabs: [{
         name: '日番',
