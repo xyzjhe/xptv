@@ -70,6 +70,11 @@
       "api": "csp_ikanbot_tu",
       "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/ikanbot_tu.js"
     },{
+      "name": "[兔]123TV\uD83C\uDFAC",
+      "type": 3,
+      "api": "csp_123TV_tu",
+      "ext": "https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/123TV_tu.js"
+    },{
       "name": "[兔]飞快TV\uD83C\uDFAC",
       "type": 3,
       "api": "csp_feikuai_tu",
