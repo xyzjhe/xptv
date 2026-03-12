@@ -40,15 +40,13 @@ async function getConfig() {
 }
 
 let isMovie=true
+let isVariety=false
 async function getCards(ext) {
     ext = argsify(ext)
     let cards = []
     let url = ext.url
-    if(url.includes("t/10/")){
-        isMovie=true
-    }else{
-        isMovie=false
-    }
+    isMovie = url.includes("t/10/");
+    isVariety = !isMovie && url.includes("t/12/");
     let page = ext.page || 1
     url = url.replace('{page}', page)
 
@@ -98,7 +96,7 @@ async function getTracks(ext) {
         const href = $(el).attr('href')
         const fullUrl = href.startsWith('/') ? appConfig.site + href : href
 
-        if (isMovie) {
+        if (isMovie || isVariety) {
 
             movieTasks.push({
                 line,
@@ -137,7 +135,7 @@ async function getTracks(ext) {
     })
 
     /* 电影版本抓取 */
-    if (isMovie && movieTasks.length) {
+    if ((isMovie||isVariety) && movieTasks.length) {
         const batchSize = 5
         let finished = 0
         for (let i = 0; i < movieTasks.length; i += batchSize) {
@@ -174,10 +172,11 @@ async function getTracks(ext) {
                     })
 
                     if (tracks.length) {
+                        const suffix = isMovie ? "个版本" : isVariety ? "集" : "";
                         lineMap.set(task.line, {
-                            title: `${task.line}[共${tracks.length}个版本]`,
+                            title: `${task.line}[共${tracks.length}${suffix}]`,
                             tracks
-                        })
+                        });
                     }
 
                 } catch (e) {
