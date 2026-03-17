@@ -1,3 +1,4 @@
+//打开成人开关  {"age18":true}
 const cheerio = createCheerio()
 
 let $config = argsify($config_str)
@@ -36,6 +37,61 @@ const appConfig = {
 }
 
 async function getConfig() {
+    if($config?.age18){
+        if (!appConfig.tabs.some(t => t.name === '成人')) {
+            appConfig.tabs.push({
+                name: '韩国情色片',
+                ext: {
+                    url: `${SITE}/t/1551/p{page}.html`
+                }
+            },{
+                name: '日本情色片',
+                ext: {
+                    url: `${SITE}/t/1552/p{page}.html`
+                }
+            },{
+                name: '大陆情色片',
+                ext: {
+                    url: `${SITE}/t/1555/p{page}.html`
+                }
+            },{
+                name: '香港情色片',
+                ext: {
+                    url: `${SITE}/t/1553/p{page}.html`
+                }
+            },{
+                name: '台湾情色片',
+                ext: {
+                    url: `${SITE}/t/1554/p{page}.html`
+                }
+            },{
+                name: '美国情色片',
+                ext: {
+                    url: `${SITE}/t/1556/p{page}.html`
+                }
+            },{
+                name: '欧洲情色片',
+                ext: {
+                    url: `${SITE}/t/1557/p{page}.html`
+                }
+            },{
+                name: '印度情色片',
+                ext: {
+                    url: `${SITE}/t/1558/p{page}.html`
+                }
+            },{
+                name: '东南亚情色片',
+                ext: {
+                    url: `${SITE}/t/1559/p{page}.html`
+                }
+            },{
+                name: '其他情色片',
+                ext: {
+                    url: `${SITE}/t/1550/p{page}.html`
+                }
+            });
+        }
+    }
     return jsonify(appConfig)
 }
 
@@ -127,7 +183,7 @@ async function getTracks(ext) {
             }
 
             lineMap.set(line, {
-                title: `${line}[共${total}集]`,
+                title: `${line}[共${total}个选项]`,
                 tracks
             })
         }
@@ -172,9 +228,9 @@ async function getTracks(ext) {
                     })
 
                     if (tracks.length) {
-                        const suffix = isMovie ? "个版本" : isVariety ? "集" : "";
+                        //const suffix = isMovie ? "个选项" : isVariety ? "集" : "";
                         lineMap.set(task.line, {
-                            title: `${task.line}[共${tracks.length}${suffix}]`,
+                            title: `${task.line}[共${tracks.length}个选项]`,
                             tracks
                         });
                     }
@@ -216,6 +272,8 @@ async function getPlayinfo(ext) {
 }
 
 async function search(ext) {
+    isMovie=true
+    isVariety=false
     ext = argsify(ext)
     let cards = [];
 
