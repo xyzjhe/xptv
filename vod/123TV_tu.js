@@ -95,14 +95,13 @@ async function getConfig() {
     return jsonify(appConfig)
 }
 
-let isMovie=true
+
 let isVariety=false
 async function getCards(ext) {
     ext = argsify(ext)
     let cards = []
     let url = ext.url
-    isMovie = url.includes("t/10/");
-    isVariety = !isMovie && url.includes("t/12/");
+    isVariety =url.includes("t/11/")||url.includes("t/13/");
     let page = ext.page || 1
     url = url.replace('{page}', page)
 
@@ -152,7 +151,7 @@ async function getTracks(ext) {
         const href = $(el).attr('href')
         const fullUrl = href.startsWith('/') ? appConfig.site + href : href
 
-        if (isMovie || isVariety) {
+        if (!isVariety) {
 
             movieTasks.push({
                 line,
@@ -191,7 +190,7 @@ async function getTracks(ext) {
     })
 
     /* 电影版本抓取 */
-    if ((isMovie||isVariety) && movieTasks.length) {
+    if (!isVariety && movieTasks.length) {
         const batchSize = 5
         let finished = 0
         for (let i = 0; i < movieTasks.length; i += batchSize) {
