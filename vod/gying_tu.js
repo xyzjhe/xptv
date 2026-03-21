@@ -62,7 +62,10 @@ async function getConfig() {
     }
     return jsonify(appConfig)
 }
+async function opensafari(url){
+    $utils.openSafari(url, UA);
 
+}
 async function getCards(ext) {
     ext = argsify(ext)
     let cards = []
@@ -82,6 +85,11 @@ async function getCards(ext) {
         },
     });
     const $ = cheerio.load(data)
+
+    // < h1 id = "title" class = "centered-div" > 正在确className机器人！</h1>
+    if($("h1.centered-div").length > 0){
+        opensafari(url)
+    }
 
     const t1 = $('p.error').text()
     if ($('p.error').length > 0) {
