@@ -1,10 +1,13 @@
 const CryptoJS = createCryptoJS()
 const cheerio = createCheerio()
 
+
 //自定义配置格式{"cookie":"","only":"","site":""}
 //only是过滤网盘用的，内容为域名的截取，如driver.uc.com，就可以填uc，115网盘就写115，用英文逗号,分割
 //去观影网页登录账号后，F12打开控制台后随便访问一个页面，在网络标签下你访问的网页，复制标头里的cookie即可
 //或者用ALOOK浏览器复制cookie
+
+//跳过人机验证由群友Y佬完成
 let $config = argsify($config_str)
 const SITE = $config.site || 'https://www.gying.net'
 
