@@ -80,7 +80,7 @@ async function bypassPow() {
 
     const $title = $('h1.centered-div')
     if ($title.length && $title.text().includes('机器人')) {
-        $utils.toastInfo('正在完成人机验证，请稍等...')
+        //$utils.toastInfo('正在完成人机验证，请稍等...')
         let script = $('script').html()
         const json = script.match(/const\s+json\s*=\s*(\{.*?\});/s)[1]
         const { id, challenge, diff, salt } = JSON.parse(json)
@@ -172,9 +172,9 @@ async function bypassPow() {
             .join('&')
     }
 }
-async function opensafari(url) {
-    $utils.openSafari(url, UA)
-}
+// async function opensafari(url) {
+//     $utils.openSafari(url, UA)
+// }
 async function getCards(ext) {
     ext = argsify(ext)
     let cards = []
@@ -198,10 +198,10 @@ async function getCards(ext) {
     const $ = cheerio.load(data)
 
     // < h1 id = "title" class = "centered-div" > 正在确className机器人！</h1>
-    const $title = $('h1.centered-div')
-    if ($title.length && $title.text().includes('机器人')) {
-        opensafari(url)
-    }
+    // const $title = $('h1.centered-div')
+    // if ($title.length && $title.text().includes('机器人')) {
+    //     opensafari(url)
+    // }
 
     $('p.error').text()
     if ($('p.error').length > 0) {
