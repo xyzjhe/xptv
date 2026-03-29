@@ -49,11 +49,6 @@
       "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/bttwo_tu.js"
     },
     {
-      "name": "[兔]4k影视\uD83C\uDFAC",
-      "type": 3,
-      "api": "csp_4kvm_tu",
-      "ext": "https://ghp.xptvhelper.link/https://raw.githubusercontent.com/xiaobaitulele/xptv/refs/heads/main/vod/4kvm_tu.js"
-    },{
       "name": "[兔]纽约影院(无搜索)\uD83C\uDFAC",
       "type": 3,
       "api": "csp_nycvod_tu",
