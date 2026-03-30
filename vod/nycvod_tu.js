@@ -162,7 +162,7 @@ async function search(ext) {
 
     //$print(argsify(data))
     const $=cheerio.load(data)
-    if($("div.login-user").length>0){
+    if($("input.verify-submit").attr("value")=='提交验证'){
         opensafari(url)
     }
 
