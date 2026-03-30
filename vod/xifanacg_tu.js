@@ -1,10 +1,10 @@
 const cheerio = createCheerio()
 let $config = argsify($config_str)
 const SITE = $config.site || "https://dm.xifanacg.com"
+const UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36";
 const headers = {
     'Origin': `${SITE}`,
-    'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
-
+    'User-Agent':UA
 }
 
 const appConfig = {
@@ -44,7 +44,7 @@ async function checkBrowser() {
         headers
     });
     if (data.toString().includes("Checking your browser")) {
-        $utils.openSafari(appConfig.site, "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36");
+        opensafari(appConfig.site)
     }
 }
 
@@ -117,7 +117,10 @@ async function getTracks(ext) {
 
     return jsonify({ list: groups })
 }
+async function opensafari(url){
+    $utils.openSafari(url, UA);
 
+}
 async function getPlayinfo(ext) {
     checkBrowser()
 
@@ -131,7 +134,6 @@ async function getPlayinfo(ext) {
     return jsonify({ 'urls': [obj.url] })
 }
 async function search(ext) {
-    return
     checkBrowser()
 
     ext = argsify(ext)
@@ -140,22 +142,51 @@ async function search(ext) {
     let text = encodeURIComponent(ext.text)
     let page = ext.page || 1
 
-
     let url = appConfig.site + `/search/wd/${text}/page/${page}.html`
     const { data } = await $fetch.get(url, {
         headers
     })
 
     const $ = cheerio.load(data)
-    $(".vod-detail").each((_, each) => {
+
+    if($("button.verify-submit").text().trim()=='提交验证'){
+        opensafari(url)
+    }
+
+    $('.vod-detail').each((_, each) => {
+        const box = $(each)
+
+        const a = box.find('.detail-info > a')
+        const img = box.find('.detail-pic img')
+
+        // 图片
+        let pic = img.attr('data-src') || img.attr('src')
+        if (pic) {
+            pic = pic.replace(/&amp;/g, '&')
+        }
+        if (pic && pic.startsWith('/')) {
+            pic = appConfig.site + pic
+        }
+
+        // 标题（兜底 alt）
+        const name =
+            box.find('.slide-info-title').text().trim() ||
+            img.attr('alt') ||
+            ''
+
+        // 备注（播放量 / 状态）
+        const remarks = box.find('.slide-info-remarks').first().text().trim()
+
+        // 链接
+        const href = a.attr('href')
 
         cards.push({
-            vod_id: $(each).find(".detail-get-box").attr("data-id").toString(),
-            vod_name: $(each).find(".slide-info-title").text(),
-            vod_pic: $(each).find(".detail-pic>img").attr("src"),
-            vod_remarks: $(each).find(".slide-info").children(":first").text(),
+            vod_id: href, // ✅ 比 data-id 更通用
+            vod_name: name,
+            vod_pic: pic,
+            vod_remarks: remarks,
             ext: {
-                url: appConfig.site + $(each).find(".detail-info").children(":first").attr("href"),
+                url: appConfig.site + href,
             },
         })
     })
