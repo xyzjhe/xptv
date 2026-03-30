@@ -145,9 +145,57 @@ async function getPlayinfo(ext) {
     }
     return jsonify({ 'urls': [m3u] })
 }
-async function search(ext) {
-    return
+async function opensafari(url){
+    $utils.openSafari(url, UA);
+
 }
+async function search(ext) {
+    ext = argsify(ext)
+    let cards = []
+    let text = encodeURIComponent(ext.text)
+    let page = ext.page || 1
+    let url=`${appConfig.site}/vodsearch/${text}----------${page}---.html`
+    const { data } = await $fetch.get(url, {
+        headers
+    })
+
+
+    //$print(argsify(data))
+    const $=cheerio.load(data)
+    if($("div.login-user").length>0){
+        opensafari(url)
+    }
+
+    $('.public-list-box').each((_, each) => {
+        const box = $(each)
+
+        const a = box.find('.public-list-exp')
+        const img = a.find('img')
+
+        let pic = img.attr("data-src") || img.attr("src")
+        if (pic && pic.startsWith('/')) {
+            pic = appConfig.site + pic
+        }
+
+        const name = box.find('.thumb-txt').text().trim()
+        const remarks = box.find('.public-list-prb').text().trim()
+        const href = a.attr("href")
+
+        cards.push({
+            vod_id: href,
+            vod_name: name,
+            vod_pic: pic,
+            vod_remarks: remarks,
+            ext: {
+                url: appConfig.site + href,
+            },
+        })
+    })
+    return jsonify({
+        list: cards,
+    })
+}
+
 
 function base64decode(str) {
     var base64DecodeChars = new Array(-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,62,-1,-1,-1,63,52,53,54,55,56,57,58,59,60,61,-1,-1,-1,-1,-1,-1,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,-1,-1,-1,-1,-1,-1,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,-1,-1,-1,-1,-1);
