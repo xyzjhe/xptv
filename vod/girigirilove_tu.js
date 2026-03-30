@@ -109,29 +109,51 @@ async function getPlayinfo(ext) {
 
     return jsonify({ 'urls': [m3u] })
 }
+async function opensafari(url){
+    $utils.openSafari(url, UA);
 
+}
 async function search(ext) {
-    return
+
     ext = argsify(ext)
     let cards = [];
 
     let text = encodeURIComponent(ext.text)
     let page = ext.page || 1
-
-    const url = appConfig.site + `/search/-------------/?wd=${text}`
+    const url = appConfig.site + `/search/${text}----------${page}---/`
     const { data } = await $fetch.get(url, {
         headers
     })
 
     const $ = cheerio.load(data)
+    if($("button.verify-submit").text()=='提交驗證'){
+        opensafari(url)
+    }
+
     $('div.vod-detail').each((_, each) => {
+        const box = $(each)
+
+        const a = box.find('.detail-info > a') // 标题外层 a
+        const img = box.find('.detail-pic img')
+
+        let pic = img.attr('data-src') || img.attr('src')
+        if (pic && pic.startsWith('/')) {
+            pic = appConfig.site + pic
+        }
+
+        const name = box.find('h3.slide-info-title').text().trim()
+
+        const remarks = box.find('.slide-info-remarks').first().text().trim()
+
+        const href = a.attr('href')
+
         cards.push({
-            vod_id: $(each).find('div.detail-info').children(":first").attr('href'),
-            vod_name: $(each).find('h3.slide-info-title').text(),
-            vod_pic: appConfig.site + $(each).find('div.detail-pic').children(":first").attr('src'),
-            vod_remarks: $(each).find('span.slide-info-remarks').text(),
+            vod_id: href,
+            vod_name: name,
+            vod_pic: pic,
+            vod_remarks: remarks,
             ext: {
-                url: appConfig.site + $(each).find('div.detail-info').children(":first").attr('href'),
+                url: appConfig.site + href,
             },
         })
     })
