@@ -9,7 +9,7 @@ const cheerio = createCheerio()
 
 //跳过人机验证由群友Y佬完成
 let $config = argsify($config_str)
-const SITE = $config.site || 'https://教父.com'
+const SITE = $config.site || 'https://www.教父.com'
 
 const UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/604.1.14 (KHTML, like Gecko)'
 
