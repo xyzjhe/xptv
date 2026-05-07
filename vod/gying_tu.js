@@ -9,7 +9,7 @@ const cheerio = createCheerio()
 
 //跳过人机验证由群友Y佬完成
 let $config = argsify($config_str)
-const SITE = $config.site || 'https://www.gying.net'
+const SITE = $config.site || 'https://教父.com'
 
 const UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/604.1.14 (KHTML, like Gecko)'
 
@@ -78,8 +78,8 @@ async function bypassPow() {
     })
     const $ = cheerio.load(data)
 
-    const $title = $('h1.centered-div')
-    if ($title.length && $title.text().includes('机器人')) {
+    const $title = $('h1.verify-title')
+    if ($title.length && $title.text().includes('安全验证')) {
         //$utils.toastInfo('正在完成人机验证，请稍等...')
         let script = $('script').html()
         const json = script.match(/const\s+json\s*=\s*(\{.*?\});/s)[1]
@@ -222,7 +222,7 @@ async function getCards(ext) {
     if (!inlistMatch) {
         $utils.toastError('未找到 _obj.inlist 数据')
     } else {
-        const inlistData = JSON.parse(inlistMatch[1])
+        const inlistData = JSON.parse(inlistMatch[1].split("; _obj.hits=")[0])
 
         inlistData['i'].forEach((item, index) => {
             cards.push({
